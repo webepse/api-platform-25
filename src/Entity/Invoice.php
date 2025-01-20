@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Entity\User;
 use App\Entity\Customer;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Link;
+use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\InvoiceRepository;
@@ -21,6 +26,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
     order: ['amount'=>'asc'],
     normalizationContext: [
         'groups' => ['invoices_read']
+    ],
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Post(),
+        new Put(),
+        new Patch(),
+        new Delete()
     ]
 )]
 #[ApiResource(
