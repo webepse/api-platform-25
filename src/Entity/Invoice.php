@@ -2,11 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\InvoiceRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\InvoiceRepository;
 
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
+#[ApiResource(
+    paginationEnabled: true,
+    paginationItemsPerPage: 10,
+    order: ['amount'=>'asc']
+)]
 class Invoice
 {
     #[ORM\Id]
