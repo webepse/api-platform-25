@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\OpenApi\Model;
 use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
@@ -17,6 +18,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\InvoiceRepository;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use App\Controller\InvoiceIncremationController;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
@@ -31,6 +33,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new Get(),
         new GetCollection(),
         new Post(),
+        new Post(
+            controller: InvoiceIncremationController::class,
+            uriTemplate: '/invoices/{id}/increment',
+            name: 'Increment',
+            openapi: new Model\Operation(
+                summary: 'Incrémente une facture',
+                description: "Incrémente le chrono d'une facture donnée"
+            )
+        ),
         new Put(),
         new Patch(),
         new Delete()
