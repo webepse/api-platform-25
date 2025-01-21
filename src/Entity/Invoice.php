@@ -80,7 +80,7 @@ class Invoice
     #[Groups(['invoices_read', 'customers_read', 'invoices_subresource'])]
     #[Assert\NotBlank(message: "La date de la facture est obligatoire")]
     #[Assert\Type(type:"datetime",message:"La date doit être au format YYYY-MM-DD")]
-    private ?\DateTimeInterface $sentAt = null;
+    private $sentAt = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['invoices_read', 'customers_read','invoices_subresource'])]
@@ -132,7 +132,7 @@ class Invoice
         return $this->sentAt;
     }
 
-    public function setSentAt(\DateTimeInterface $sentAt): static
+    public function setSentAt($sentAt): static
     {
         $this->sentAt = $sentAt;
 
