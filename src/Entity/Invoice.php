@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
 #[ApiResource(
-    paginationEnabled: true,
+    paginationEnabled: false,
     paginationItemsPerPage: 10,
     order: ['amount'=>'asc'],
     normalizationContext: [
