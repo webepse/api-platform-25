@@ -78,7 +78,6 @@ class Customer
     #[ORM\ManyToOne(inversedBy: 'customers')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['customers_read'])]
-    #[Assert\NotBlank(message: "Le user du client est obligatoire")]
     private ?User $user = null;
 
     public function __construct()
